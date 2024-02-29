@@ -29,11 +29,17 @@ class RouteServiceProvider extends ServiceProvider
         });
 
         $this->routes(function () {
+            Route::middleware(['web', 'auth.console'])
+                ->domain('console.' . config('app.domain'))
+                ->group(base_path('routes/webconsole.php'));
+
             Route::middleware('api')
+                ->domain(config('app.domain'))
                 ->prefix('api')
                 ->group(base_path('routes/api.php'));
 
             Route::middleware('web')
+                ->domain(config('app.domain'))
                 ->group(base_path('routes/web.php'));
         });
     }
