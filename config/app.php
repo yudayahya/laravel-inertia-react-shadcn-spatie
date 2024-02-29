@@ -57,6 +57,8 @@ return [
 
     'url' => env('APP_URL', 'http://localhost'),
 
+    'domain' => explode('://', env('APP_URL', 'http://localhost'))[1] ?? 'localhost',
+
     'asset_url' => env('ASSET_URL'),
 
     /*
@@ -70,7 +72,7 @@ return [
     |
     */
 
-    'timezone' => 'UTC',
+    'timezone' => env('APP_TIMEZONE', 'UTC'),
 
     /*
     |--------------------------------------------------------------------------
