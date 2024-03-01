@@ -5,6 +5,7 @@ namespace App\Http\Middleware;
 use Closure;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Spatie\Permission\Models\Role;
 use Symfony\Component\HttpFoundation\Response;
 
 class AuthenticateToConsole
@@ -20,7 +21,9 @@ class AuthenticateToConsole
 
         foreach ($guards as $guard) {
             if (Auth::guard($guard)->check()) {
-                return $next($request);
+                if (Auth::user()->hasAnyRole(Role::all())) {
+                    return $next($request);
+                }
             }
         }
 
