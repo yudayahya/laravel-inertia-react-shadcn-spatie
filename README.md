@@ -7,60 +7,73 @@
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
 </p>
 
-## About Laravel
+A starter kit based on Laravel Breeze which includes Inertia, React, Typescript, Tailwindcss, Shadcn/ui and Spatie.
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+The starter kit also implement basic usage of spatie (roles & permissions) and provide a web for client/user/customer and console/portal/dashboard for admin (CMS). The routes system is modified to implement domain (for client) & subdomain (for console) routing include authentication middleware for console routes.
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+> **Note:** check this `app\Providers\RouteServiceProvider.php` file for details and see the complete installation instructions to ensure you can run the starter kit correctly.
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+### Complete Installations
 
-## Learning Laravel
+1. Clone this repository.
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+```bash
+git clone https://github.com/yudayahya/laravel-inertia-react-shadcn-spatie.git
+```
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+2. Change to file directory.
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+```bash
+cd laravel-inertia-react-shadcn-spatie
+```
 
-## Laravel Sponsors
+3. Install the dependencies.
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+```bash
+composer install
+npm install
+```
 
-### Premium Partners
+4. Create .env file from .env.example
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[WebReinvent](https://webreinvent.com/)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Jump24](https://jump24.co.uk)**
-- **[Redberry](https://redberry.international/laravel/)**
-- **[Active Logic](https://activelogic.com)**
-- **[byte5](https://byte5.de)**
-- **[OP.GG](https://op.gg)**
+```bash
+cp .env.example .env
+```
 
-## Contributing
+5. Configure .env variables according to your needs and fill `APP_URL` with domain (ex: `https://laravel-inertia-react-shadcn-spatie.test`) to make sure the domain & subdomain routing works well. If you're using `Windows` OS and [Laragon](https://laragon.org/) you can enable `Auto-create Virtual Hosts` (refer to https://laragon.org/docs/pretty-urls.html for the details). After you're able to use the `Laragon Pretty URL` create an empty folder with the folder name same as your project name and add `subdomain` prefix (ex: `console.laravel-inertia-react-shadcn-spatie`) inside `laragon\www` and restart your laragon, laragon will ask a prompt to add the folder name (subdomain like) to your `C:\Windows\System32\drivers\etc\hosts` file and create `Apache`/`Nginx` `.conf` file automatically, after that remove your new folder and restart laragon, laragon will remove the `Apache`/`Nginx` `.conf` file (we don't need this `.conf` file, we only need laragon to add your folder name to `hosts` file). And now you should able to access your domain and subdomain from your browser. But our laravel application is not ready yet, proceed to the next installation instructions.
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+    > **Note:** To setup (domain & subdomain availability) anything other than Windows with Laragon, you need to find and do it yourself.
 
-## Code of Conduct
+6. Migrate the table
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+```bash
+php artisan migrate
+```
 
-## Security Vulnerabilities
+7. Running db seed
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+```bash
+php artisan db:seed
+```
 
-## License
+8. Build the frontend bundle
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+```bash
+npm run build
+```
+
+9. It's done, navigate to your domain URL in your browser (make sure your server/laragon is running). Use the super admin credentials to access the console page, you can find in `database\seeders\SuperAdminSeeder.php` seeder file.
+
+### References
+
+-   **[Laravel](https://laravel.com/)**
+-   **[Inertia](https://inertiajs.com/)**
+-   **[React](https://react.dev/)**
+-   **[Breeze](https://github.com/laravel/breeze)**
+-   **[Spatie](https://spatie.be/)**
+-   **[Tailwindcss](https://tailwindcss.com/)**
+-   **[Shadcn/ui](https://ui.shadcn.com/)**
+
+### License
+
+The Starter Kit is open-sourced under the [MIT license](https://opensource.org/licenses/MIT).
